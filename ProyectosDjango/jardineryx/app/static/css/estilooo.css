@@ -1,0 +1,70 @@
+h1{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.fondo{
+    background-color:rgb(122, 173, 33);
+    
+
+}
+
+.p{
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+    background-color: rgba(82, 151, 12, 0.514);
+    
+}
+ footer{
+     background-color:rgb(5, 59, 8);
+     color:azure;
+ }
+ h2{
+     color:antiquewhite;
+     font-size: 20px;
+ }
+
+ .inicio{
+     color:chartreuse;
+     text-decoration: none;
+
+ }
+
+ input {
+    float: left;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+label {
+    clear: both;
+    float: left;
+    width: 180px;
+}
+
+button {
+    clear: both;
+    float: left;
+    width: 50px;
+}
+
+.error-control {
+    border: 1px solid rgb(255, 0, 0);
+}
+
+label.error {
+    color: rgb(255, 0, 0);
+    width: 300px;
+    font-size: 0.8em;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.jumbotron{
+    background-color:rgb(148, 226, 145);
+
+}
+
+ 
+

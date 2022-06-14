@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quienes somos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <link href="{% static 'css/estilooo.css' %}" type="text/css" rel="stylesheet">
+    <script>
+       function Mover(obj)
+        {
+            obj.innerHTML="!Te queremos mucho¡";
+            obj.style.background="yellow";
+           
+        }
+
+        function MoverFuera(obj)
+        {
+            obj.innerHTML="Acerca el mouse a esta cajita, tenemos un secreto que contarte jijiji";
+            obj.style.background= "green";
+            
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      {% load static %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/logo.png' %}" width="100" height="100" alt="">
+        </a>
+        
+
+        <div class="collapse navbar-collapse" id="opciones">   
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'quienes_somos'%}">Quienes somos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'nuestros_productos'%}">Nuestros productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'formularios' %}">¿Quieres Registrarte?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'monedas' %}">Intercambio de monedas</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'cliente' %}">ver clientes</a>
+              {% else %}
+              <a class="nav-link" href="#">No tiene permisos</a>
+              {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'producto' %}">ver productos</a>
+              {% else %}
+              <a class="nav-link" href="#">No tiene permisos</a>
+              {% endif %}
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}">cerrar sesion</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+              {% endif %}
+            </li>                 
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid fondo color">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-lg-12">
+            <h4 class="display-3">¿Quienes Somos?</h4>
+          </div>
+          </div>
+
+        </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-lg-12">
+        <p> Somos una agrupación presentando nuestro proyecto enfocado a los amantes de la jardinería, tratándose así de imágenes, productos y consejos de cuidado al mismo, 
+          viéndose así una página completamente dedicada al tema comprometiéndose a la buena relación con aquellos que nos visiten y se lleven un buen sabor de boca al ver la página web.
+          Siéntanse libres de contactarnos a través de nuestras redes sociales o a través de nuestros WhatsApp para aclarar cualquier duda o consulta. 
+          <br> Por favor, los invitamos a revisar nuestro catálogo de productos y adquirir lo que necesiten, que para eso se creó esta página. 😉</p>
+    </div>
+  </div>
+
+    <br> <br>
+
+    <div class="container">
+      <div class="row jumbotron">
+        <div class="col-sm-12  col-lg-6"> 
+    <iframe width="420" height="345" src="https://www.youtube.com/embed/JkuZyDJ8yh8">
+    </iframe>
+    </div>
+
+
+<div class="col-sm-12  col-lg-6"> 
+  <div onmouseover="Mover(this)" onmouseout="MoverFuera(this)"
+  style= "background-color: green; width: 420px; height: 165px;  
+  padding: 30px;">
+  Acerca el mouse a esta cajita, tenemos un secreto que contarte jijiji
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <img src="{% static 'img/logo.png' %}" width="100" height="100">
+      </div>
+      <div class="col-4">
+        <h2 onmouseover="style.color = 'green'" onmouseout="style.color= 'white'">Integrantes</h2>
+        <p>Ignacio Albornoz <br> Izan Cardenas</p>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <h2>Contactenos</h2>
+        <a href="https://www.instagram.com/nachou._._/"><img src="{% static 'img/instagram logo.png' %}" width="30" height="30"></a>
+        <a href="https://twitter.com/jardineryx9191" ><img src="{% static 'img/twitterlogo.png' %}" width="30" height="30"></a>
+        <a href="https://www.facebook.com/ignacio.albornoz.750/"><img src="{% static 'img/facebook logo.png' %}" width="30" height="30"></a> <br>
+        <p>+56991338341(Ignacio Albornoz) <BR> +56950199023(Izan Cardenas)</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <a class="inicio" href="{% url 'index' %}">INICIO</a>
+      </div>
+      <div class="col-6">
+        <p class="p">2022 copyright todos los derechos reservados</p>
+      </div>
+    </div>
+  </div>
+
+
+
+</footer>
+
+    
+   
+    
+</body>
+</html>

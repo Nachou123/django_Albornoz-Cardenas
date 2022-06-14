@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Productos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <link href="{% static 'css/estilooo.css' %}" type="text/css" rel="stylesheet">
+    
+
+
+    <script>
+      function operaciones(op)
+      {
+          var ops = {
+              sumar: function sumarNumeros(n1, n2) {
+                  return (parseInt(n1) + parseInt(n2));
+              },
+              restar: function restarNumeros(n1, n2) {
+                  return (parseInt(n1) - parseInt(n2));
+              },
+              multiplicar: function multiplicarNumeros(n1, n2) {
+                  return (parseInt(n1) * parseInt(n2));
+              },
+              dividir: function dividirNumeros(n1, n2) {
+                  return (parseInt(n1) / parseInt(n2));
+              }
+          };
+        var operacion;
+        switch(op) {
+          case 'sumar':
+            var operando1 = document.getElementById("resultado").value;
+            document.getElementById("resultado").value = operando1 + "+";
+            operacion = document.getElementById("resultado").value;
+            document.getElementById("memoria").value = "suma";
+            break;
+          case 'restar':
+            var operando1 = document.getElementById("resultado").value;
+            document.getElementById("resultado").value = operando1 + "-";
+            operacion = document.getElementById("resultado").value;
+            document.getElementById("memoria").value = "resta";
+            break;
+          case 'multiplicar':
+            var operando1 = document.getElementById("resultado").value;
+            document.getElementById("resultado").value = operando1 + "*";
+            operacion = document.getElementById("resultado").value;
+            document.getElementById("memoria").value = "multiplicacion";
+            break;
+          case 'dividir':
+            var operando1 = document.getElementById("resultado").value;
+            document.getElementById("resultado").value = operando1 + "/";
+            operacion = document.getElementById("resultado").value;
+            document.getElementById("memoria").value = "division";
+            break;
+          case 'igual':	
+            operacion = document.getElementById("resultado").value;
+            var memoriaop = document.getElementById("memoria").value;
+            switch(memoriaop) {
+              case 'suma':
+                var operandos = operacion.split("+");
+                var resultado = ops.sumar(operandos[0], operandos[1]);
+                document.getElementById("resultado").value = resultado;
+                break;
+              case 'resta':
+                var operandos = operacion.split("-");
+                var resultado = ops.restar(operandos[0], operandos[1]);
+                document.getElementById("resultado").value = resultado;
+                break;
+              case 'multiplicacion':
+                var operandos = operacion.split("*");
+                var resultado = ops.multiplicar(operandos[0], operandos[1]);
+                document.getElementById("resultado").value = resultado;
+                break;
+              case 'division':
+                var operandos = operacion.split("/");
+                var resultado = ops.dividir(operandos[0], operandos[1]);
+                document.getElementById("resultado").value = resultado;
+                break;					
+            }	
+            break;
+        }
+      }     
+      </script>
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'img/logo.png' %}" width="100" height="100" alt="">
+    </a>
+    
+
+    <div class="collapse navbar-collapse" id="opciones"> 
+      {% load static %}  
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'quienes_somos' %}">Quienes somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'nuestros_productos' %}">Nuestros productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'formularios' %}">¿Quieres Registrarte?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'monedas' %}">Intercambio de monedas</a>
+        </li>
+        {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cliente' %}">ver clientes</a>
+                {% else %}
+                <a class="nav-link" href="#">No tiene permisos</a>
+                {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'producto' %}">ver productos</a>
+          {% else %}
+          <a class="nav-link" href="#">No tiene permisos</a>
+          {% endif %}
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'logout' %}">cerrar sesion</a>
+          {% else %}
+          <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+          {% endif %}
+        </li>                 
+      </ul>
+    </div>
+  </nav>
+
+      <div class="container">
+        <h1>¡Revise Nuestras Ofertas! </h1>
+        <div class="row">
+          <div class="col-sm-12 col-lg-4">
+            <div class="card">
+              <img class="card-img-top" src="{% static 'img/tijera.jpg' %}" height="300">            
+              <div class="card-body">
+                <h4 class="card-title">Tijera para cortar pasto</h4>
+                <p class="card-text">nuestra fabulosa tijera con la cual puede cortar pasto y podar  </p>
+                <a href="#" class="btn btn-primary">32.990</a>
+              </div>
+            </div>     
+          </div>
+          <div class="col-sm-12 col-lg-4">
+            <div class="card">
+              <img class="card-img-top" src="{% static 'img/afilador.jpg' %}" height="300">            
+              <div class="card-body">
+                <h4 class="card-title">afilador para cuchillas</h4>
+                <p class="card-text"> maravilloso afilador de cuchillas, sus cuchillas se lo agradeceran  </p>
+                <a href="#" class="btn btn-primary">32.990</a>
+              </div>
+            </div>     
+          </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/azada.jpg' %}"height="300">
+            <div class="card-body">
+              <h4 class="card-title">Azada y Cultivador</h4>
+              <p class="card-text">es infaltable la presencia de una azada y cultivador, para cavar con mas comodidad  </p>
+              <a href="#" class="btn btn-primary">24.990$</a>
+            </div>                       
+          </div> 
+        </div>
+      </div>
+      <br> <br>
+        <div class="row">
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/barrehojas.jpg' %}"height="300">
+            <div class="card-body">
+              <h4 class="card-title">Barrehojas</h4>
+              <p class="card-text">un articulo clasico si de jardineria se trata, ¡imprescindible! </p>
+              <a href="#" class="btn btn-primary">1.990$</a>
+            </div>                   
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/sierra plegable.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">sierra plegble</h4>
+              <p class="card-text">un articulo popular entre los jardineros es la sierra plegable, llevela a un buen precio  </p>
+              <a href="#" class="btn btn-primary">24.990$</a>
+            </div>                      
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/pala de mano.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">Pala de mano</h4>
+              <p class="card-text">una pala de mano importante a la hora de cavar y sembrar  </p>
+              <a href="#" class="btn btn-primary">1.990</a>
+            </div>                      
+          </div>
+        </div>
+      </div>
+      <br> <br>
+      <div class="row">
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/hacha.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">Hacha leñera</h4>
+              <p class="card-text">lleve nuestra hacha leñera para cortar madera con todo el flow  </p>
+              <a href="#" class="btn btn-primary">69.990</a>
+            </div>                      
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/machete con serrucho.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">Machete con serrucho</h4>
+              <p class="card-text">¡dos herramientas en una! herramienta ultra util </p>
+              <a href="#" class="btn btn-primary">59.990</a>
+            </div>                      
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/horquilla.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">horquilla horqueta</h4>
+              <p class="card-text">¿te puedo hacer una pregunta? ¡¿que esperas para comprarla?! </p>
+              <a href="#" class="btn btn-primary">36.990</a>
+            </div>                      
+          </div>
+        </div>
+
+      </div>
+      <br> <br>
+      <dic class="row">
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/podadora altura.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">Podadora de altura y serrucho</h4>
+              <p class="card-text">imprescindible ente los jardineros mas experimentados...</p>
+              <a href="#" class="btn btn-primary">62.990</a>
+            </div>                      
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/tijera cortarramas.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">Tijera Cortarramas</h4>
+              <p class="card-text">para cortar ramas con actitud y calidad, ¿que esperas para llevartelo?</p>
+              <a href="#" class="btn btn-primary">44.990</a>
+            </div>                      
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-4">        
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/tijera de una mano.jpg' %}" height="300">
+            <div class="card-body">
+              <h4 class="card-title">tijera de una mano</h4>
+              <p class="card-text">para que pueda cortar con mas comodidad o si le falta un brazo para usar las dos manos</p>
+              <a href="#" class="btn btn-primary">14.990</a>
+            </div>                      
+          </div>
+        </div>
+      </dic>
+
+
+      </div>
+
+      <br> <br> <br>
+      <div class="container">
+      <div class=" row jumbotron">
+        <div class="col-sm-12 col-lg-6">
+      <form>
+        <table style="border: 3px solid #000; text-align:center;">
+          <tr style="text-align:center;">
+            <td colspan = "4">
+              <input id="resultado" type="text" value="0" size="20" style="border: 3px solid blue; padding: 10px;" /><input id="memoria" type="hidden" value="0" />
+            </td>
+          </tr>
+        
+          <tr style="text-align:center;">
+            <td>
+            <input type="button" value="7"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=7}else{ var str2='7'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="8"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=8}else{ var str2='8'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="9"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=9}else{ var str2='9'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="/"
+              onClick="operaciones('dividir'); return false;"
+              style="width:55px">
+            </td>
+          </tr>
+        
+          <tr style="text-align:center;">
+            <td>
+            <input type="button" value="4"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=4}else{ var str2='4'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="5"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=5}else{ var str2='5'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="6"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=6}else{ var str2='6'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="*"
+              onClick="operaciones('multiplicar'); return false;"
+              style="width:55px">
+            </td>
+          </tr>
+        
+          <tr style="text-align:center;">
+            <td>
+            <input type="button" value="1"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=1}else{ var str2='1'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="2"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=2}else{ var str2='2'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="3"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=3}else{ var str2='3'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px">
+            </td>
+            <td>
+            <input type="button" value="-" 
+              onClick="operaciones('restar'); return false;"
+              style="width:55px">
+            </td>
+          </tr>
+        
+          <tr style="text-align:center;">
+            <td>
+            <input type="button" value="0"
+              onClick="var str1=document.getElementById('resultado').value; if(str1 == '0'){document.getElementById('resultado').value=0}else{ var str2='0'; var res = str1.concat(str2);document.getElementById('resultado').value=res;}"
+              style="width:55px"> 
+            </td>
+            <td colspan="2">
+            <input type="button" value="="
+              onClick="operaciones('igual'); return false;"
+              style="width:110px">
+            </td>
+            <td>
+            <input type="button" value="+"
+              onClick="operaciones('sumar'); return false;"
+              style="width:55px">
+            </td>
+          </tr>
+        
+        
+        </table>	
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <h3>Aquí podrás calcular el precio que tendras que pagar por los artículos que necesites </h3>
+        <img src="{% static 'img/esta_si.png.crdownload' %}" width="200" height="200">
+
+      </div>
+      </div>
+    </div>
+        
+        
+        
+       
+      
+
+      
+
+
+
+
+
+      
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <img src="{% static 'img/logo.png' %}" width="100" height="100">
+          </div>
+          <div class="col-4">
+            <h2 onmouseover="style.color = 'green'" onmouseout="style.color= 'white'">Integrantes</h2>
+            <p>Ignacio Albornoz <br> Izan Cardenas</p>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <h2>Contactenos</h2>
+            <a href="https://www.instagram.com/nachou._._/"><img src="{% static 'img/instagram logo.png' %}" width="30" height="30"></a>
+            <a href="https://twitter.com/jardineryx9191" ><img src="{% static 'img/twitterlogo.png' %}" width="30" height="30"></a>
+            <a href="https://www.facebook.com/ignacio.albornoz.750/"><img src="{% static 'img/facebook logo.png' %}" width="30" height="30"></a> <br>
+            <p>+56991338341(Ignacio Albornoz) <BR> +56950199023(Izan Cardenas)</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <a class="inicio" href="{url 'index' %}">INICIO</a>
+          </div>
+          <div class="col-6">
+            <p class="p">2022 copyright todos los derechos reservados</p>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    </footer>
+
+
+
+
+    
+</body>
+</html>
