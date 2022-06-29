@@ -39,8 +39,9 @@
         rules: {
                       idCliente: "required",
                       nombreCliente: "required",
-                      apellido: "required",
-                      comuna: "required",
+                      correo: "required",
+                      direccion: "required",
+
                       },   
                       
                  messages: 
@@ -51,12 +52,14 @@
                   nombreCliente: {
                       required: 'Ingresa el nombre del cliente',
                   },
-                  apellido: {
-                      required: 'Ingresa el apellido del cliente',
+                  correo: {
+                      required: 'Ingresa el correo del cliente',
                   },
-                  comuna: {
-                    required: 'ingresa la comuna del cliente',
+                
+                  direccion: {
+                      required: 'Ingresa la direccion del cliente',
                   },
+
                  
                    
               } 
@@ -137,14 +140,18 @@
             </div>
 
             <div class="form-group">
-                {{ form.apellido.label}}
-                {{ form.apellido}}
+                {{ form.correo.label}}
+                {{ form.correo}}
             </div>
 
-            <div class="form-group">
-                {{ form.comuna.label}}
-                {{ form.comuna}}
-            </div>
+            
+
+          <div class="form-group">
+            {{ form.direccion.label}}
+            {{ form.direccion}}
+        </div>
+
+          
 
 
             <br><br>

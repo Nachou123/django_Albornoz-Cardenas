@@ -74,8 +74,8 @@
               <div class="col-sm-12">
                 <th>id del cliente</th>
                 <th>nombre del cliente</th>
-                <th>apellido del cliente</th>
-                <th>comuna del cliente</th>
+                <th>correo del cliente</th>
+                <th>direccion del cliente</th>
                 <th>modificar cliente</th>
                 <th>eliminar cliente</th>
               </div>
@@ -86,8 +86,8 @@
             <tr>
                 <td>{{ ve.idCliente }}</td>
                 <td>{{ ve.nombreCliente }}</td>
-                <td>{{ ve.apellido }}</td>
-                <td>{{ ve.comuna }}</td>
+                <td>{{ ve.correo }}</td>
+                <td>{{ ve.direccion }}</td>
 
                 {% if user.is_authenticated %}
 

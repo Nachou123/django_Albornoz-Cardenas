@@ -4,6 +4,7 @@ from .models import Producto
 from .forms import ProductoForm, ClienteForm
 
 
+
 # Create your views here.
 
 def index(request):

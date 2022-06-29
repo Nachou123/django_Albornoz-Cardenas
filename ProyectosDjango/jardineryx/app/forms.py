@@ -10,12 +10,12 @@ class ClienteForm(forms.ModelForm):
 
     class Meta:
         model= Cliente 
-        fields = ['idCliente', 'nombreCliente', 'apellido', 'comuna']
+        fields = ['idCliente', 'nombreCliente', 'correo', 'direccion']
         labels ={
             'idCliente' : 'IdCliente',
             'nombreCliente' : 'NombreCliente',
-            'apellido' : 'Apellido',
-            'comuna' : 'Comuna',
+            'correo' : 'Correo',
+            'direccion' : 'Direccion',
         }
 
         widgets={
@@ -33,20 +33,20 @@ class ClienteForm(forms.ModelForm):
                     'id': 'nombreCliente'
                 }
             ), 
-            'apellido': forms.TextInput(
+            'Correo': forms.TextInput(
                 attrs={
                     'class': 'form-control', 
-                    'placeholder': 'Ingrese apellido del cliente', 
-                    'id': 'apellido'
+                    'placeholder': 'Ingrese el correo del cliente', 
+                    'id': 'correo'
                 }
             ),
-            'comuna': forms.TextInput(
+             'Direccion': forms.TextInput(
                 attrs={
                     'class': 'form-control', 
-                    'placeholder': 'Ingrese la comuna del cliente', 
-                    'id': 'comuna'
+                    'placeholder': 'Ingrese el direccion del cliente', 
+                    'id': 'direccion'
                 }
-            )  
+            ),
         
 
 
